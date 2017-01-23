@@ -6,6 +6,10 @@ import java.util.List;
 import org.bson.Document;
 
 public class Zaiko {
+	/**
+	 * 在庫DBに登録されている商品とその商品の在庫数のリストを取得します
+	 * @return 商品と在庫数のリスト(ItemFormの配列)
+	 */
 	public List<ItemForm> getItemList(){
 		ZaikoDB db = new ZaikoDB();
 
@@ -24,6 +28,11 @@ public class Zaiko {
 
 	}
 
+	/**
+	 * 在庫DBに商品を追加します
+	 * @param recv 商品名と追加数量のデータ(ItemForm)
+	 * @return 成功したときtrue
+	 */
 	public boolean receiveItem(ItemForm recv){
 		ZaikoDB db = new ZaikoDB();
 
@@ -33,6 +42,11 @@ public class Zaiko {
 		return true;
 	}
 
+	/**
+	 * 在庫DBからしていた数量の商品を出庫します
+	 * @param req 商品名と出庫数量のデータ(ItemForm)
+	 * @return 成功した時true, 在庫数が足りないとき、失敗した時false
+	 */
 	public boolean issueItem(ItemForm req){
 		ZaikoDB db = new ZaikoDB();
 

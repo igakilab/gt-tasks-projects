@@ -1,8 +1,25 @@
 package jp.ac.oit.igakilab.dwr.ranking;
 
+/**
+ * スコアのレコード(名前とスコアのペア)を表すクラスです
+ * dwrでクライアントとやり取りするときに利用します
+ * @author ryokun
+ *
+ */
 public class RecordForm {
+	/**
+	 * 順位
+	 */
 	private int rank;
+
+	/**
+	 * 名前
+	 */
 	private String name;
+
+	/**
+	 * スコア(点数)
+	 */
 	private int score;
 
 	public int getRank() {
