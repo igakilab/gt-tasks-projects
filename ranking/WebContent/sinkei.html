@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<title>神経衰弱ゲーム</title>
+		<style type="text/css">
+
+		body {
+		    text-align: center;
+		}
+		.stage {
+    		margin: 10px 0;
+    		padding: 0;
+		}
+		.stage > li {
+    		display: inline-block;
+    		width: 30px;
+    		margin: 0 5px 10px;
+    		border: 1px solid #000;
+    		line-height: 30px;
+    		cursor: pointer;
+		}
+
+		</style>
+	</head>
+	<body>
+
+		<ul class="stage js-stage"></ul>
+		<button class="js-reset">リセット</button>
+		<div class="dispScore"></div>
+		<div name="toukou" class="addscore">
+		</div>
+		<div class="inpbtn"></div>
+
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/sinkei.js"></script>
+		
+		<script src="js/util.js"></script>
+		<!--<script src="js/sprint-result-analyzer.js"></script>-->
+		<script src="dwr/engine.js"></script>
+		<script src="dwr/util.js"></script>
+		<!--<script src="dwr/interface/SprintHistory.js"></script>-->
+
+	</body>
+</html>
