@@ -38,3 +38,25 @@
   rank: <順位(int)>
 }
 ```
+
+
+## zaikokanri
+
+### Zaiko
+
+| メソッド名 | 引数 | 返却値 |
+| :-- | :-- | :-- |
+| getItemList | なし | ItemFormの配列 |
+| receiveItem | ItemForm | true/false |
+| issueItem | ItemForm | 出庫可否(true/false) |
+
+注釈: issueItemは商品の出庫を意味します。もし、在庫数よりも多い数量の出庫依頼が出たときは`false`が返却されます
+
+### ItemForm
+
+```
+{
+  name: <商品名(String)>,
+  amount: <個数(int)>
+}
+```
