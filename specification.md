@@ -27,7 +27,7 @@
 | メソッド名 | 引数 | 返却値 |
 | :-- | :-- | :-- |
 | getRanking | ゲーム名(String) | RecordFormの配列 |
-| sendScore | スコア(RecordForm, rankの値は不要) | true/false |
+| sendScore | ゲーム名(String), スコア(RecordForm, rankの値は不要) | true/false |
 
 #### RecordForm
 
