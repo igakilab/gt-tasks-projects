@@ -15,24 +15,32 @@ public class RankingDB {
 	static String DB_NAME = "ranking";
 	static String COL_NAME = "scores";
 
-	MongoClient client;
+	private MongoClient client;
+
+	public RankingDB(){
+		client = new MongoClient(DB_HOST, DB_PORT);
+	}
 
 	private MongoCollection<Document> getCollection(){
 		return client.getDatabase(DB_NAME).getCollection(COL_NAME);
 	}
 
 	public FindIterable<Document> findScores(String gameTitle, int length){
-		MongoCollection<Document> col = getCollection();
-
-		return col.find(Filters.eq("gameTitle", gameTitle)).sort(Sorts.descending("score")).limit(length);
+		return getCollection()
+			.find(Filters.eq("gameTitle", gameTitle))
+			.sort(Sorts.descending("score"))
+			.limit(length);
 	}
 
 	public void registScore(String gameTitle, String name, int score){
-		MongoCollection<Document> col = getCollection();
 		Document doc = new Document("gameTitle", gameTitle)
 			.append("name", name)
 			.append("score", score);
 
-		col.insertOne(doc);
+		getCollection().insertOne(doc);
+	}
+
+	public void closeClient(){
+		client.close();
 	}
 }
