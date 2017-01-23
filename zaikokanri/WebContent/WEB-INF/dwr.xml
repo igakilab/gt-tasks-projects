@@ -6,13 +6,9 @@
 
 <dwr>
   <allow>
-    <create creator="new" javascript="MultiplePrinter">
-      <param name="class" value="jp.ac.oit.igakilab.dwr.multiple.MultiplePrinter"/>
-    </create>
     <create creator="new" javascript="Zaiko">
       <param name="class" value="jp.ac.oit.igakilab.dwr.zaiko.Zaiko"/>
     </create>
-    <convert converter="bean" match="jp.ac.oit.igakilab.dwr.multiple.*" />
     <convert converter="bean" match="jp.ac.oit.igakilab.dwr.zaiko.*" />
     <convert converter="exception" match="java.lang.Exception" />
     <convert converter="bean" match="java.lang.StackTraceElement"/>
