@@ -5,25 +5,24 @@
 	</head>
 	<body>
 
-		<div class="nyuuka">
+		<form id="nyuuka">
 			<h4>商品名</h4>
-			<input type="text" id="syohinmei"/>
+			<input name="name" type="text"/>
 			<h4>個数</h4>
-			<input type="text" id="nyuuka-kosuu"/>
-			<button class="nyuukabtn">入荷</button>
-		</div>
+			<input name="amount" type="text"/>
+			<button type="button" class="nyuukabtn">入荷</button>
+		</form>
+
+		<hr>
 
 		<table border="1" id="list">
-			<tr>
-				<th>商品名</th><th>個数</th>
-			</tr>
-
 		</table>
 
 		<script src="dwr/engine.js"></script>
 		<script src="dwr/util.js"></script>
 		<script src="dwr/interface/Zaiko.js"></script>
 		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/jquery.serialize.js"></script>
 		<script src="js/syohin.js"></script>
 
 	</body>

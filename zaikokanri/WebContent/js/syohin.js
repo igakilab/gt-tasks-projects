@@ -1,36 +1,46 @@
-var $itemImport = $(".nyuuka"),$itemOutport = $(".syukka");
-var $btnImport = $(".nyuukabtn"),$btnOutport = $(".syukkabtn");
+var $itemImport = $(".nyuuka");
+var $btnImport = $(".nyuukabtn");
 var $list = $('#list');
 
+initList();
+
 function initList(){
-	var List = Zaiko.getItemList();
-	console.log(List);
-	$list.append("<tr><td class='sname'>"+List.name+"</td><td class='snum'>"+List.amount+"</td><td><span class='syukka'><input type='text' id='syukka-kosuu'/></span><span class='sbtn'><button class='syukkabtn'>出荷</button></span></td></tr>");
+	Zaiko.getItemList(function(reply){
+		$list.empty();
+		$list.append("<tr><th>商品名</th><th>個数</th><th>出荷</th></tr>");
+
+		for(var i=0; i<reply.length; i++){
+			var $inputAmount = $("<input></input>").attr("type", "text");
+			var $exbtn = $("<button></button>").text("出荷");
+
+			//ボタンにイベントを登録
+			$exbtn.on('click', {sname:reply[i].name, $inputAmount}, function(e){
+				var name = e.data.sname;
+				var amount = e.data.$inputAmount.val();
+
+				Zaiko.issueItem({name, amount}, function(reply){
+					if( reply ){
+						alert(name + "を" + amount + "個出荷しました");
+						initList();
+					}else{
+						alert("在庫が足りません");
+					}
+				});
+			});
+
+			$list.append($("<tr></tr>").append(
+				$("<td></td>").text(reply[i].name),
+				$("<td></td>").text(reply[i].amount),
+				$inputAmount, $exbtn
+			));
+		}
+	});
 }
 
 $btnImport.on('click',function(){
+	var input = $("#nyuuka").serializeJson();
 
-	var name = $('#syohinmei').val();
-	var amount = $('#nyuuka-kosuu').val();
-	console.log(name);
-	console.log(amount);
-	var status = Zaiko.receiveItem({name,amount});
-	console.log(status);
-
-	if(status)initList();
-
-
-});
-
-$('table').on('click',$btnOutport,function(){
-
-	var itemname = $('.sname').text();
-	var amount = $('.snum').text();
-	var need = $('#syukka-kosuu').val();
-
-	var status = Zaiko.issuelItem({itemname,need});
-
-	if(status)initList();
-
-
+	Zaiko.receiveItem(input, function(reply){
+		initList();
+	});
 });
