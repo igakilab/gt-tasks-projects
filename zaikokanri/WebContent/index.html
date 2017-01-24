@@ -1,38 +1,43 @@
+<!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <script type="text/javascript" src="dwr/engine.js"></script>
-    <script type="text/javascript" src="dwr/util.js"></script>
-    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="js/jquery.serialize.js"></script>
-    <script type="text/javascript" src="dwr/interface/MultiplePrinter.js"></script>
-    <script type="text/javascript">
-      function update(){
-        var formData = $('#csprinter_form').serializeJson();
-        MultiplePrinter.execute(formData, {
-          callback: function(data) {
-            $('#csprinterReply').text(data);
-            $('#error_message').text("");
-          },
-          errorHandler: updateErrorMessage
-        });
-      }
-      function updateErrorMessage(message, exception){
-        $('#error_message').text(message);
-        $('#csprinterReply').text("");
-      }
-    </script>
-  </head>
-  <body>
-    <p>
-      <form id="csprinter_form">
-        最大値: <input type="text" name="max" value="10"/><br/>
-        指定した倍数の数字をryokunに変える: <input type="text" name="multiple" value="3"/><br/>
-        <input value="Send" type="button" onclick="update()"/>
-      </form>
-    </p><p>
-      Reply: <span id="csprinterReply"></span>
-    </p><p>
-      <span id="error_message" class="error"></span>
-    </p>
-  </body>
+	<head>
+		<title>在庫管理</title>
+	</head>
+
+	<body>
+		<h1>在庫管理画面</h1>
+
+		<hr/>
+
+		<h2>入荷</h2>
+		<p>入荷した商品名と個数を入力してください。</p>
+
+		<form id="nyuuka">
+			<h4>商品名</h4>
+			<input name="name" type="text"/>
+			<h4>個数</h4>
+			<input name="amount" type="text"/>
+			<button type="button" class="nyuukabtn">入荷</button>
+		</form>
+
+		<hr/>
+
+		<h2>在庫リスト</h2>
+		<p>出荷するときは、商品の出荷の欄に個数を入力しボタンをクリックしてください。</p>
+
+		<table border="1" id="list">
+		</table>
+
+		<hr/>
+
+		<i>gt-tasks-project zaikokanri 2017</i>
+
+		<script src="dwr/engine.js"></script>
+		<script src="dwr/util.js"></script>
+		<script src="dwr/interface/Zaiko.js"></script>
+
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/jquery.serialize.js"></script>
+		<script src="js/script.js"></script>
+	</body>
 </html>
