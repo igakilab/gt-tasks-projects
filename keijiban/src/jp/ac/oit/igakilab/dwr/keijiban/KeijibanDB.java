@@ -45,7 +45,7 @@ public class KeijibanDB {
 	 * @return DBカーソル
 	 */
 	public FindIterable<Document> getMessages(){
-		return getCollection().find().sort(Sorts.descending("time"));
+		return getCollection().find().sort(Sorts.ascending("time"));
 	}
 
 	/**
