@@ -96,8 +96,8 @@ function judgeCards($second, secondNum) {
 
                     var name = $('#name').val();
                     console.log(name);
-                    //status = sendScore(name,score);
-                    alert(name+": "+score);
+                    status = Ranking.sendRecord("sinkei",{name,score});
+                    if(status)alert("スコアを送信しました。");
 
             });
         }

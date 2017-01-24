@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="empty-project/src"/>
+	<classpathentry kind="src" path="keijiban/src"/>
+	<classpathentry kind="src" path="ranking/src"/>
+	<classpathentry kind="src" path="zaikokanri/src"/>
+	<classpathentry kind="lib" path="empty-project/WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="empty-project/WebContent/WEB-INF/lib/dwr.jar"/>
+	<classpathentry kind="lib" path="keijiban/WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="keijiban/WebContent/WEB-INF/lib/dwr.jar"/>
+	<classpathentry kind="lib" path="keijiban/WebContent/WEB-INF/lib/mongo-java-driver-3.4.1.jar"/>
+	<classpathentry kind="lib" path="ranking/WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="ranking/WebContent/WEB-INF/lib/dwr.jar"/>
+	<classpathentry kind="lib" path="ranking/WebContent/WEB-INF/lib/mongo-java-driver-3.4.1.jar"/>
+	<classpathentry kind="lib" path="zaikokanri/WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="zaikokanri/WebContent/WEB-INF/lib/dwr.jar"/>
+	<classpathentry kind="lib" path="zaikokanri/WebContent/WEB-INF/lib/mongo-java-driver-3.4.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
