@@ -1,10 +1,13 @@
 package jp.ac.oit.igakilab.dwr.keijiban;
 
+import java.util.Calendar;
+
 import org.bson.Document;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Sorts;
 
 /**
  * DBにアクセスするためのクラスです
@@ -42,9 +45,7 @@ public class KeijibanDB {
 	 * @return DBカーソル
 	 */
 	public FindIterable<Document> getMessages(){
-		//TODO: DBから投稿カーソル取得機能を実装
-
-		return null;
+		return getCollection().find().sort(Sorts.ascending("time"));
 	}
 
 	/**
@@ -53,7 +54,11 @@ public class KeijibanDB {
 	 * @param message 本文
 	 */
 	public void postMessage(String name, String message){
-		//TODO: DBへの投稿機能を実装
+		Document doc = new Document("name", name)
+			.append("message", message)
+			.append("time", Calendar.getInstance().getTime());
+
+		getCollection().insertOne(doc);
 	}
 
 	/**
