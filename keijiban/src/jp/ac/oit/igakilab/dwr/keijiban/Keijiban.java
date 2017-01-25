@@ -1,9 +1,8 @@
 package jp.ac.oit.igakilab.dwr.keijiban;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
-
-import org.bson.Document;
 
 public class Keijiban {
 	/**
@@ -11,20 +10,25 @@ public class Keijiban {
 	 * @return 投稿の履歴(PostFormの配列)
 	 */
 	public List<PostForm> getMessages(){
-		KeijibanDB db = new KeijibanDB();
+		//TODO: 投稿取得メソッドの実装
 
-		List<PostForm> messages = new ArrayList<PostForm>();
-		for(Document doc : db.getMessages()){
-			PostForm post = new PostForm();
-			post.setName(doc.getString("name"));
-			post.setMessage(doc.getString("message"));
-			post.setTime(doc.getDate("time"));
+		//ダミーデータを作成
+		PostForm p1 = new PostForm();
+		PostForm p2 = new PostForm();
+		Calendar cal = Calendar.getInstance();
+		p1.setName("ryo");
+		p1.setMessage("いまどこー？");
+		p2.setName("kita");
+		p2.setMessage("二度寝した");
 
-			messages.add(post);
-		}
+		p2.setTime(cal.getTime());
+		cal.add(Calendar.MINUTE, -3);
+		p1.setTime(cal.getTime());
 
-		db.closeClient();
-		return messages;
+		List<PostForm> dummy = Arrays.asList(p1, p2);
+
+		//ダミーデータを返却
+		return dummy;
 	}
 
 	/**
@@ -33,23 +37,8 @@ public class Keijiban {
 	 * @return　投稿に成功した時true
 	 */
 	public boolean postMessage(PostForm post){
-		KeijibanDB db = new KeijibanDB();
+		//TODO: 投稿登録メソッドの実装
 
-		db.postMessage(post.getName(), post.getMessage());
-
-		db.closeClient();
 		return true;
 	}
-
-    /**
-     * REST呼び出しを行う場合は下記のように呼ぶ
-     * http://sample.com:8080/project_name/dwr/jsonp/ClassName/MethodName/param1/ と指定する
-     * http://localhost:8080/multiple-dwr/dwr/jsonp/MultiplePrinter/helloWorld/ryokun/
-     * @param name
-     * @return nameに":HelloWorld"を付与したものを返す
-     */
-    public String helloWorld(String name){
-    	return name + ":HelloWorld";
-
-    }
 }

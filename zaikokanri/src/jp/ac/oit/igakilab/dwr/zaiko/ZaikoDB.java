@@ -59,9 +59,9 @@ public class ZaikoDB {
 	 * @return DBカーソル
 	 */
 	public AggregateIterable<Document> getItemList(){
-		//入荷/出荷データの合計を計算する
-		return getCollection().aggregate(Arrays.asList(
-			Aggregates.group("$name", Accumulators.sum("qty", "$amount"))));
+		//TODO: 在庫数のリストを取得する機能の実装
+
+		return null;
 	}
 
 	/**
@@ -70,10 +70,7 @@ public class ZaikoDB {
 	 * @param amount 追加数
 	 */
 	public void receiveItem(String itemName, int amount){
-		Document doc = new Document("name", itemName)
-			.append("amount", amount);
-
-		getCollection().insertOne(doc);
+		//TODO: DBに入庫を記録する機能の実装
 	}
 
 	/**
@@ -84,16 +81,9 @@ public class ZaikoDB {
 	 * @return 在庫があり、出庫処理が成功すればtrue
 	 */
 	public boolean issueItem(String itemName, int amount){
-		int nowQty = getItemQuantity(itemName);
+		//TODO: DBに出庫を記録する機能の実装
 
-		if( nowQty >= amount ){
-			Document doc = new Document("name", itemName)
-				.append("amount", -amount);
-			getCollection().insertOne(doc);
-			return true;
-		}else{
-			return false;
-		}
+		return false;
 	}
 
 	/**

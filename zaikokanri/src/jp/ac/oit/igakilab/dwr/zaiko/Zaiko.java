@@ -3,29 +3,29 @@ package jp.ac.oit.igakilab.dwr.zaiko;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bson.Document;
-
 public class Zaiko {
 	/**
 	 * 在庫DBに登録されている商品とその商品の在庫数のリストを取得します
 	 * @return 商品と在庫数のリスト(ItemFormの配列)
 	 */
 	public List<ItemForm> getItemList(){
-		ZaikoDB db = new ZaikoDB();
+		//TODO: 在庫リスト取得メソッドの実装
 
-		List<ItemForm> items = new ArrayList<ItemForm>();
+		//ダミーデータを作成
+		List<ItemForm> dummy = new ArrayList<ItemForm>();
+		ItemForm i;
 
-		for(Document doc : db.getItemList()){
-			ItemForm tmp = new ItemForm();
-			tmp.setName(doc.getString("_id"));
-			tmp.setAmount(doc.getInteger("qty", 0));
+		i = new ItemForm();
+		i.setName("cola");
+		i.setAmount(30);
+		dummy.add(i);
 
-			items.add(tmp);
-		}
+		i = new ItemForm();
+		i.setName("fritolay");
+		i.setAmount(10);
+		dummy.add(i);
 
-		db.closeClient();
-		return items;
-
+		return dummy;
 	}
 
 	/**
@@ -34,11 +34,8 @@ public class Zaiko {
 	 * @return 成功したときtrue
 	 */
 	public boolean receiveItem(ItemForm recv){
-		ZaikoDB db = new ZaikoDB();
+		//TODO: 入庫メソッドの実装
 
-		db.receiveItem(recv.getName(), recv.getAmount());
-
-		db.closeClient();
 		return true;
 	}
 
@@ -48,11 +45,8 @@ public class Zaiko {
 	 * @return 成功した時true, 在庫数が足りないとき、失敗した時false
 	 */
 	public boolean issueItem(ItemForm req){
-		ZaikoDB db = new ZaikoDB();
+		//TODO: 出庫メソッドの実装
 
-		boolean res = db.issueItem(req.getName(), req.getAmount());
-
-		db.closeClient();
-		return res;
+		return true;
 	}
 }
