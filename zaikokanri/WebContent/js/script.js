@@ -1,11 +1,20 @@
-var $itemImport = $(".nyuuka");
-var $btnImport = $(".nyuukabtn");
-var $list = $('#list');
+$(document).ready(function(){
+	reloadList();
 
-initList();
+	$(".nyuukabtn").on('click', function(){
+		var input = $("#nyuuka").serializeJson();
 
-function initList(){
+		Zaiko.receiveItem(input, function(reply){
+			reloadList();
+		});
+	});
+})
+
+function reloadList(){
 	Zaiko.getItemList(function(reply){
+		var $list = $("#list");
+
+		//表をクリア
 		$list.empty();
 		$list.append("<tr><th>商品名</th><th>個数</th><th>出荷</th></tr>");
 
@@ -15,19 +24,10 @@ function initList(){
 
 			//ボタンにイベントを登録
 			$exbtn.on('click', {sname:reply[i].name, $inputAmount}, function(e){
-				var name = e.data.sname;
-				var amount = e.data.$inputAmount.val();
-
-				Zaiko.issueItem({name, amount}, function(reply){
-					if( reply ){
-						alert(name + "を" + amount + "個出荷しました");
-						initList();
-					}else{
-						alert("在庫が足りません");
-					}
-				});
+				syukka(e.data.sname, e.data.$inputAmount.val());
 			});
 
+			//表に追加
 			$list.append($("<tr></tr>").append(
 				$("<td></td>").text(reply[i].name),
 				$("<td></td>").text(reply[i].amount),
@@ -37,10 +37,13 @@ function initList(){
 	});
 }
 
-$btnImport.on('click',function(){
-	var input = $("#nyuuka").serializeJson();
-
-	Zaiko.receiveItem(input, function(reply){
-		initList();
+function syukka(name, amount){
+	Zaiko.issueItem({name, amount}, function(reply){
+		if( reply ){
+			alert(name + "を" + amount + "個出荷しました");
+			reloadList();
+		}else{
+			alert("在庫が足りません");
+		}
 	});
-});
+}
