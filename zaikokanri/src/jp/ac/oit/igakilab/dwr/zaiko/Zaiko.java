@@ -8,6 +8,7 @@ import org.bson.Document;
 public class Zaiko {
 	/**
 	 * 在庫DBに登録されている商品とその商品の在庫数のリストを取得します
+	 * ItemFormの値にはnameとamountのみ値を設定します
 	 * @return 商品と在庫数のリスト(ItemFormの配列)
 	 */
 	public List<ItemForm> getItemList(){
