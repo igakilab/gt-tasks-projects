@@ -8,6 +8,7 @@ import org.bson.Document;
 public class Zaiko {
 	/**
 	 * 在庫DBに登録されている商品とその商品の在庫数のリストを取得します
+	 * ItemFormの値にはnameとamountのみ値を設定します
 	 * @return 商品と在庫数のリスト(ItemFormの配列)
 	 */
 	public List<ItemForm> getItemList(){
@@ -54,5 +55,28 @@ public class Zaiko {
 
 		db.closeClient();
 		return res;
+	}
+
+	/**
+	 * 商品の出入の履歴を取得します
+	 * @param itemName 商品名
+	 * @return 出入庫の履歴
+	 *
+	 */
+	public List<ItemForm> getItemHistory(String itemName){
+		ZaikoDB db = new ZaikoDB();
+
+		List<ItemForm> history = new ArrayList<ItemForm>();
+		for(Document doc : db.getItemReceipts(itemName)){
+			ItemForm tmp = new ItemForm();
+			tmp.setName(doc.getString("name"));
+			tmp.setAmount(doc.getInteger("amount", 0));
+			tmp.setTime(doc.getDate("time"));
+
+			history.add(tmp);
+		}
+
+		db.closeClient();
+		return history;
 	}
 }
