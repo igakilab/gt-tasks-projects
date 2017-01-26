@@ -6,23 +6,27 @@
 	<body>
 		<h1>掲示板</h1>
 		<hr/>
-		
 
-		<form id="toukou" style="display:none">
+		<h3>ルーム一覧</h3>
+		<ul class="room-list">
+		</ul>
+
+		<hr/>
+
+		<form id="toukou">
+			<h4 class="room-header">ルーム名</h4>
+			<input id="roomInput" name="room" type="hidden" value=""/>
 			<h4>おなまえ</h4>
 			<input name="name" type="text"/><br>
 			<h4>本文</h4>
 			<textarea name="message" cols=100 rows=5></textarea>
-			<button type="button" class="less">投稿</button>
-			<hr/>
+			<button type="button" class="less">ルーム作成</button>
 		</form>
 
-		
+		<hr/>
 
-		<div class="keijiban" style="display:none">
+		<div class="keijiban">
 		</div>
-
-		<div class="thread"></div>
 
 		<hr/>
 
