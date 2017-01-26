@@ -5,16 +5,16 @@ import jp.ac.oit.igakilab.dwr.zaiko.Zaiko;
 
 public class TestZaiko {
 	public static void main(String[] args){
-		System.out.println("--- TEST getItemList");
-		testGetItemList();
-		System.out.println();
-
 		System.out.println("--- TEST receiveItem");
 		testReceiveItem();
 		System.out.println();
 
 		System.out.println("--- TEST issueItem");
 		testIssueItem();
+		System.out.println();
+
+		System.out.println("--- TEST getItemList");
+		testGetItemList();
 		System.out.println();
 	}
 
@@ -27,11 +27,11 @@ public class TestZaiko {
 	}
 
 	public static void testReceiveItem(){
-		String name = "oreo";
+		String name = "オレオ";
 		int amount = 5;
 		Zaiko z = new Zaiko();
 
-		System.out.format("receiveItem(\"%s\", %d)\n", name, amount);
+		System.out.format("%s を %d 個 入荷します\n", name, amount);
 		ItemForm i = new ItemForm();
 		i.setName(name);
 		i.setAmount(amount);
@@ -40,11 +40,11 @@ public class TestZaiko {
 	}
 
 	public static void testIssueItem(){
-		String name = "oreo";
-		int amount = 3;
+		String name = "オレオ";
+		int amount = 2;
 		Zaiko z = new Zaiko();
 
-		System.out.format("issueItem(\"%s\", %d)\n", name, amount);
+		System.out.format("%s を %d 個 出荷します\n", name, amount);
 		ItemForm i = new ItemForm();
 		i.setName(name);
 		i.setAmount(amount);

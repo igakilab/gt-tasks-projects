@@ -5,6 +5,7 @@ $(document).ready(function(){
 		var input = $("#nyuuka").serializeJson();
 
 		Zaiko.receiveItem(input, function(reply){
+			$(".nyuukamsg").text(input.name + "を" + input.amount + "個入荷しました");
 			reloadList();
 		});
 	});

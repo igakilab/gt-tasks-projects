@@ -31,7 +31,7 @@ public class TestKeijiban {
 		String msg = "今日学校行かなあかん？";
 		Keijiban k = new Keijiban();
 
-		System.out.format("postMessage(\"%s\", \"%s\")\n", name, msg);
+		System.out.format("[%s: %s]を投稿", name, msg);
 		PostForm p = new PostForm();
 		p.setName(name);
 		p.setMessage(msg);
