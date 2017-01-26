@@ -30,9 +30,10 @@ function reloadList(){
 
 			//表に追加
 			$list.append($("<tr></tr>").append(
-				$("<td></td>").text(reply[i].name),
+				$("<td></td>").append($("<a></a>").text(reply[i].name)
+						.attr("href", "history.html?item=" + reply[i].name)),
 				$("<td></td>").text(reply[i].amount),
-				$inputAmount, $exbtn
+				$("<td></td>").append($inputAmount, $exbtn)
 			));
 		}
 	});
