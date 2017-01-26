@@ -1,6 +1,6 @@
 $(document).ready(function(){
-	reloadMessages();
-
+	//reloadMessages();
+	loadThreads();
 	$(".less").on('click', function(){
 		var toukou = $("#toukou").serializeJson();
 
@@ -21,4 +21,17 @@ function reloadMessages(){
 			$board.append("<p class='message'>"+reply[i].message+"</p>");
 		}
 	});
+}
+
+function loadThreads(){
+	$thread = $(".thread");
+	$thread.append("<h3>スレッド一覧</h3>");
+	$thread.append("<ul class='Tlist'><li><a href='#aaaaa'>aaaaa</a></li><li><a href='#bbbbb'>bbbbb</a></li></ul>");
+	$(".Tlist").on('click',function(){
+			$("#toukou").css("display","");
+			$(".keijiban").css("display","");
+			$thread.css("display","none");
+			//reloadMessages();
+	});
+
 }
