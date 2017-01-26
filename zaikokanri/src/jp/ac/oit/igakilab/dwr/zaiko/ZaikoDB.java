@@ -1,6 +1,7 @@
 package jp.ac.oit.igakilab.dwr.zaiko;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 import org.bson.Document;
@@ -73,7 +74,8 @@ public class ZaikoDB {
 	 */
 	public void receiveItem(String itemName, int amount){
 		Document doc = new Document("name", itemName)
-			.append("amount", amount);
+			.append("amount", amount)
+			.append("time", Calendar.getInstance().getTime());
 
 		getCollection().insertOne(doc);
 	}
@@ -90,7 +92,8 @@ public class ZaikoDB {
 
 		if( nowQty >= amount ){
 			Document doc = new Document("name", itemName)
-				.append("amount", -amount);
+				.append("amount", -amount)
+				.append("time", Calendar.getInstance().getTime());
 			getCollection().insertOne(doc);
 			return true;
 		}else{
