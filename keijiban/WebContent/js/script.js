@@ -32,6 +32,7 @@ function loadRooms(){
 		for(var i=0; i<reply.length; i++){
 			var $link = $("<a></a>").attr("href", "#").text(reply[i]);
 			$link.on('click', {room:reply[i]}, function(e){
+				$("#roomInput").val(e.data.room);
 				loadMessages(e.data.room);
 			});
 

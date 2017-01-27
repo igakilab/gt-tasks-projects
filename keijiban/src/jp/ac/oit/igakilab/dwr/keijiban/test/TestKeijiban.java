@@ -42,6 +42,7 @@ public class TestKeijiban {
 
 		System.out.format("[%s: %s]を投稿", name, msg);
 		PostForm p = new PostForm();
+		p.setRoom("test");
 		p.setName(name);
 		p.setMessage(msg);
 
