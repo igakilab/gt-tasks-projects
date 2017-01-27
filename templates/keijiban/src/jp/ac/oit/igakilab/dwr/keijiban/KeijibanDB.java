@@ -3,6 +3,7 @@ package jp.ac.oit.igakilab.dwr.keijiban;
 import org.bson.Document;
 
 import com.mongodb.MongoClient;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 
@@ -37,11 +38,12 @@ public class KeijibanDB {
 	}
 
 	/**
-	 * DBに登録されているこれまでの投稿を取得します。
+	 * DBに登録されているroomでの発言を取得します
 	 * 取得時にtime(投稿日時)の新しい順に並び替えます。
+	 * @param room 部屋の名前
 	 * @return DBカーソル
 	 */
-	public FindIterable<Document> getMessages(){
+	public FindIterable<Document> getMessages(String room){
 		//TODO: DBから投稿カーソル取得機能を実装
 
 		return null;
@@ -49,12 +51,25 @@ public class KeijibanDB {
 
 	/**
 	 * メッセージを新しく投稿します
+	 * @param 部屋の名前
 	 * @param name 投稿者名
 	 * @param message 本文
 	 */
-	public void postMessage(String name, String message){
+	public void postMessage(String name, String room, String message){
 		//TODO: DBへの投稿機能を実装
+
 	}
+
+	/**
+	 * DBに登録されている投稿にから、部屋のリストを取得します
+	 * @return DBカーソル
+	 */
+	public AggregateIterable<Document> getRoomList(){
+		//TODO: DBからの部屋リスト取得機能を実装
+
+		return null;
+	}
+
 
 	/**
 	 * DBクライアントをクローズします

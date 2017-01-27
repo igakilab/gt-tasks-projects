@@ -6,6 +6,11 @@ import java.text.SimpleDateFormat;
 import jp.ac.oit.igakilab.dwr.keijiban.Keijiban;
 import jp.ac.oit.igakilab.dwr.keijiban.PostForm;
 
+/**
+ * Keijibanクラスをテストするクラスです
+ * @author Ryokun
+ *
+ */
 public class TestKeijiban {
 	public static void main(String[] args){
 		System.out.println("--- TEST getMessages");
@@ -14,13 +19,17 @@ public class TestKeijiban {
 
 		System.out.println("--- TEST postMessage");
 		testPostMessage();
+
+		System.out.println("--- TEST getRoomList");
+		testGetRoomList();
 	}
 
 	public static void testGetMessages(){
+		String room = "test";
 		Keijiban k = new Keijiban();
 		DateFormat df = new SimpleDateFormat("yy/MM/dd HH:mm");
 
-		for(PostForm p : k.getMessages()){
+		for(PostForm p : k.getMessages(room)){
 			System.out.format("%s : %s (%s)\n",
 				p.getName(), p.getMessage(), df.format(p.getTime()));
 		}
@@ -37,5 +46,13 @@ public class TestKeijiban {
 		p.setMessage(msg);
 
 		System.out.println("return: " + k.postMessage(p));
+	}
+
+	public static void testGetRoomList(){
+		Keijiban k = new Keijiban();
+
+		for(String r : k.getRoomList()){
+			System.out.println(r);
+		}
 	}
 }

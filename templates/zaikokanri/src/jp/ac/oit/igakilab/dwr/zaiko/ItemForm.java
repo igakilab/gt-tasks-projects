@@ -1,5 +1,7 @@
 package jp.ac.oit.igakilab.dwr.zaiko;
 
+import java.util.Date;
+
 /**
  * 商品の名前と数量を表すクラスです
  * dwrでクライアントとやり取りするときに利用します
@@ -17,6 +19,11 @@ public class ItemForm {
 	 */
 	private int amount;
 
+	/**
+	 * 時刻
+	 */
+	private Date time;
+
 	public String getName() {
 		return name;
 	}
@@ -31,5 +38,13 @@ public class ItemForm {
 
 	public void setAmount(int amount) {
 		this.amount = amount;
+	}
+
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
 	}
 }

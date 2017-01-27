@@ -15,6 +15,11 @@ public class PostForm {
 	private String name;
 
 	/**
+	 * 投稿された部屋
+	 */
+	private String room;
+
+	/**
 	 * 投稿の本文
 	 */
 	private String message;
@@ -30,6 +35,14 @@ public class PostForm {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getRoom() {
+		return room;
+	}
+
+	public void setRoom(String room) {
+		this.room = room;
 	}
 
 	public String getMessage() {
