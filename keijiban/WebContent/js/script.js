@@ -10,22 +10,9 @@ $(document).ready(function(){
 	});
 });
 
-function initForm(room){
-	if( room ){
-		$(".room-header").css("display", "none");
-		$("#roomInput").val(room).attr("type", "hidden");
-		$(".less").text("投稿");
-	}else{
-		$(".room-header").css("display", "");
-		$("#roomInput").val("").attr("type", "text");
-		$(".less").text("ルーム作成");
-	}
-}
-
 function loadMessages(room){
 	Keijiban.getMessages(room, function(reply){
 		var $board = $(".keijiban");
-		initForm(room);
 
 		$board.empty();
 		$board.append("<h3>" + room + "</h3>");
@@ -40,7 +27,6 @@ function loadMessages(room){
 function loadRooms(){
 	Keijiban.getRoomList(function(reply){
 		$list = $(".room-list");
-		initForm(null);
 
 		$list.empty();
 		for(var i=0; i<reply.length; i++){
