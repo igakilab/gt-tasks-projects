@@ -5,10 +5,17 @@
 	</head>
 	<body>
 		<h1>掲示板</h1>
+		<hr/>
+
+		<h3>ルーム一覧</h3>
+		<ul class="room-list">
+		</ul>
+		<a href="create.html">ルーム新規作成</a>
 
 		<hr/>
 
 		<form id="toukou">
+			<input id="roomInput" name="room" type="hidden" value=""/>
 			<h4>おなまえ</h4>
 			<input name="name" type="text"/><br>
 			<h4>本文</h4>

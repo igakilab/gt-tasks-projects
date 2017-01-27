@@ -10,11 +10,11 @@ public class Keijiban {
 	 * データベースに登録されている投稿の一覧を取得します
 	 * @return 投稿の履歴(PostFormの配列)
 	 */
-	public List<PostForm> getMessages(){
+	public List<PostForm> getMessages(String room){
 		KeijibanDB db = new KeijibanDB();
 
 		List<PostForm> messages = new ArrayList<PostForm>();
-		for(Document doc : db.getMessages()){
+		for(Document doc : db.getMessages(room)){
 			PostForm post = new PostForm();
 			post.setName(doc.getString("name"));
 			post.setMessage(doc.getString("message"));
@@ -35,10 +35,26 @@ public class Keijiban {
 	public boolean postMessage(PostForm post){
 		KeijibanDB db = new KeijibanDB();
 
-		db.postMessage(post.getName(), post.getMessage());
+		db.postMessage(post.getName(), post.getRoom(), post.getMessage());
 
 		db.closeClient();
 		return true;
+	}
+
+	/**
+	 * 現在ある部屋（スレッド）のリストを取得します
+	 * @return 部屋の名前の配列(Stringの配列)
+	 */
+	public List<String> getRoomList(){
+		KeijibanDB db = new KeijibanDB();
+
+		List<String> rooms = new ArrayList<String>();
+		for(Document doc : db.getRoomList()){
+			rooms.add(doc.getString("_id"));
+		}
+
+		db.closeClient();
+		return rooms;
 	}
 
     /**

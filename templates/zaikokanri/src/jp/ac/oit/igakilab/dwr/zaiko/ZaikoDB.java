@@ -8,6 +8,7 @@ import org.bson.conversions.Bson;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.AggregateIterable;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Accumulators;
 import com.mongodb.client.model.Aggregates;
@@ -84,6 +85,18 @@ public class ZaikoDB {
 		//TODO: DBに出庫を記録する機能の実装
 
 		return false;
+	}
+
+	/**
+	 * 在庫DBから指定された商品の記録を取得します
+	 * 返却されるデータは日付で昇順に整列されています。
+	 * @param itemName 商品名
+	 * @return DBカーソル
+	 */
+	public FindIterable<Document> getItemReceipts(String itemName){
+		//TODO: DBから入出荷の履歴を取得する機能を実装
+
+		return null;
 	}
 
 	/**

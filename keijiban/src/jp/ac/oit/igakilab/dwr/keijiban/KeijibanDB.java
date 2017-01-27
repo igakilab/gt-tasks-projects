@@ -1,12 +1,16 @@
 package jp.ac.oit.igakilab.dwr.keijiban;
 
+import java.util.Arrays;
 import java.util.Calendar;
 
 import org.bson.Document;
 
 import com.mongodb.MongoClient;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Aggregates;
+import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Sorts;
 
 /**
@@ -40,26 +44,41 @@ public class KeijibanDB {
 	}
 
 	/**
-	 * DBに登録されているこれまでの投稿を取得します。
+	 * DBに登録されているroomでの発言を取得します
 	 * 取得時にtime(投稿日時)の新しい順に並び替えます。
+	 * @param room 部屋の名前
 	 * @return DBカーソル
 	 */
-	public FindIterable<Document> getMessages(){
-		return getCollection().find().sort(Sorts.ascending("time"));
+	public FindIterable<Document> getMessages(String room){
+		return getCollection()
+			.find(Filters.eq("room", room))
+			.sort(Sorts.ascending("time"));
 	}
 
 	/**
 	 * メッセージを新しく投稿します
+	 * @param 部屋の名前
 	 * @param name 投稿者名
 	 * @param message 本文
 	 */
-	public void postMessage(String name, String message){
+	public void postMessage(String name, String room, String message){
 		Document doc = new Document("name", name)
+			.append("room", room)
 			.append("message", message)
 			.append("time", Calendar.getInstance().getTime());
 
 		getCollection().insertOne(doc);
 	}
+
+	/**
+	 * DBに登録されている投稿にから、部屋のリストを取得します
+	 * @return DBカーソル
+	 */
+	public AggregateIterable<Document> getRoomList(){
+		return getCollection().aggregate(Arrays.asList(
+			Aggregates.group("$room")));
+	}
+
 
 	/**
 	 * DBクライアントをクローズします

@@ -10,6 +10,11 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+/**
+ * 演習で使用するDBを一度dropし、テストデータを書き込みます
+ * @author Ryokun
+ *
+ */
 public class InitDB {
 	public static void main(String args[]){
 		MongoClient client = new MongoClient("localhost", 27017);
@@ -26,20 +31,29 @@ public class InitDB {
 
 		List<Document> data = new ArrayList<Document>();
 		data.add(new Document("name", "take")
+			.append("room", "test")
 			.append("message", "次の評価実験は?")
 			.append("time", cal.getTime()));
 		cal.add(Calendar.MINUTE, 2);
 		data.add(new Document("name", "haya")
-				.append("message", "明日の14時からだよ")
-				.append("time", cal.getTime()));
+			.append("room", "test")
+			.append("message", "明日の14時からだよ")
+			.append("time", cal.getTime()));
 		cal.add(Calendar.MINUTE, 2);
 		data.add(new Document("name", "take")
-				.append("message", "たぶん被験者は3人だったよね？")
-				.append("time", cal.getTime()));
+			.append("room", "test")
+			.append("message", "たぶん被験者は3人だったよね？")
+			.append("time", cal.getTime()));
 		cal.add(Calendar.MINUTE, 2);
 		data.add(new Document("name", "haya")
-				.append("message", "その通り、寝坊するなよ")
-				.append("time", cal.getTime()));
+			.append("room", "test")
+			.append("message", "その通り、寝坊するなよ")
+			.append("time", cal.getTime()));
+
+		data.add(new Document("name", "mitsu")
+			.append("room", "test2")
+			.append("message", "ここは違う部屋だよ")
+			.append("time", cal.getTime()));
 
 		col.insertMany(data);
 		System.out.println("登録完了");

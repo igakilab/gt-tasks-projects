@@ -9,7 +9,7 @@ public class Keijiban {
 	 * データベースに登録されている投稿の一覧を取得します
 	 * @return 投稿の履歴(PostFormの配列)
 	 */
-	public List<PostForm> getMessages(){
+	public List<PostForm> getMessages(String room){
 		//TODO: 投稿取得メソッドの実装
 
 		//ダミーデータを作成
@@ -40,5 +40,14 @@ public class Keijiban {
 		//TODO: 投稿登録メソッドの実装
 
 		return true;
+	}
+
+	/**
+	 * 現在ある部屋（スレッド）のリストを取得します
+	 * @return 部屋の名前の配列(Stringの配列)
+	 */
+	public List<String> getRoomList(){
+		//TODO: 部屋リスト取得メソッドの実装
+		return Arrays.asList("sample-room1", "sample-room2");
 	}
 }
